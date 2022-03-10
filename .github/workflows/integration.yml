@@ -1,0 +1,59 @@
+name: Playwright Tests
+on:
+  push:
+    branches:
+    - main
+    - 'feature/**'
+  pull_request:
+    branches:
+    - main
+    - 'feature/**'
+
+env:
+  M365_UPN: ${{ secrets.M365_UPN }}
+  M365_PWD: ${{ secrets.M365_PWD }}
+
+jobs:
+  test:
+    timeout-minutes: 60
+    environment: Integration
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Cleanup config before run
+      run: |
+          rm -rf /home/runner/.config/Microsoft*
+      if: always()
+
+    - uses: actions/checkout@v2
+    
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
+    - name: Install xvfb
+      run: |
+        sudo apt-get install xvfb
+
+    - name: Npm ci
+      run: |
+        npm ci
+
+    - name: Install Microsoft Teams
+      run: |
+          sudo /bin/sh -c 'wget https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.4.00.26453_amd64.deb -O /usr/share/teams.deb'
+          sudo apt install /usr/share/teams.deb
+
+    - name: Install Playwright
+      run: npx playwright install --with-deps
+
+    - name: Run Playwright tests
+      run: xvfb-run --auto-servernum -- npx playwright test
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 20
