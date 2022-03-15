@@ -8,6 +8,11 @@ cd msteams-playwright
 npm install
 npx playwright test
 ```
+## MS Teams Auth UI Testing - Desktop 
+
+![Authentication](https://github.com/reidav/msteams-playwright/blob/main/assets/demo.gif?raw=true)
+
+
 ## UI Tests
 
 Samples / actual status
