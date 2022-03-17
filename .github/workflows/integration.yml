@@ -8,7 +8,7 @@ on:
     branches:
     - main
     - 'feature/**'
-    
+
 env:
   M365_UPN: ${{ secrets.M365_UPN }}
   M365_PWD: ${{ secrets.M365_PWD }}
@@ -48,10 +48,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests
-      run: xvfb-run --auto-servernum -e output.txt -- npx playwright test
-
-    - name: Show output
-      run: cat output.txt
+      run: xvfb-run --auto-servernum -- npx playwright test
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
