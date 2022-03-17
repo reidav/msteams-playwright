@@ -15,7 +15,7 @@ export class MSTeamsHelper {
         let eutil = this;
         await this.electronApp.windows().forEach(async function (page: any) {
             let page_title = await page.title();
-            console.log("'" + page_title + "', '" + page.url() + "'");
+            console.error("'" + page_title + "', '" + page.url() + "'");
             eutil._dumpFrameTree(page.mainFrame(), " ->");
         });
     }

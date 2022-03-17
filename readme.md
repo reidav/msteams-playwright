@@ -1,6 +1,9 @@
 # msteams-playwright
 
-Samples of [Playwright](https://playwright.dev) UI testing for Microsoft Teams Apps
+[![Playwright Tests](https://github.com/reidav/msteams-playwright/actions/workflows/integration.yml/badge.svg)](https://github.com/reidav/msteams-playwright/actions/workflows/integration.yml)
+
+This project aims to provide basic samples of how to use [Playwright](https://playwright.dev) 
+for Microsoft Teams App UI testing (desktop & web). Contributions are always welcomed.
 
 ```shell
 git clone https://github.com/reidav/msteams-playwright.git
@@ -8,17 +11,13 @@ cd msteams-playwright
 npm install
 npx playwright test
 ```
-## MS Teams Auth UI Testing - Desktop 
 
 ![Authentication](https://github.com/reidav/msteams-playwright/blob/main/assets/demo.gif?raw=true)
 
-
-## UI Tests
-
-Samples / actual status
+## Backlog 
 
 - [x] Authentication
-- [ ] Git workflow / actions
+- [x] Git workflow / actions
 - [ ] Installing an app from the store
 - [ ] Teams App testing sample
 - [ ] Teams Bot testing sample

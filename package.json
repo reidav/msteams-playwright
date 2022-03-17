@@ -2,7 +2,6 @@
   "name": "msteams-playwright",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "npx playwright test"
   },
