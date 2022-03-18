@@ -12,7 +12,7 @@ npm install
 npx playwright test
 ```
 
-![Authentication](https://github.com/reidav/msteams-playwright/blob/main/assets/demo.gif?raw=true)
+![Authentication](https://github.com/reidav/msteams-playwright/blob/main/docs/assets/demo.gif?raw=true)
 
 ## Backlog 
 

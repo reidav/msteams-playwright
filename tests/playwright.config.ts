@@ -3,7 +3,7 @@ import { PlaywrightTestConfig } from '@playwright/test';
 require('dotenv').config();
 
 const config: PlaywrightTestConfig = {
-  testDir: './tests',
+  testDir: '.',
   timeout: 60 * 1000,
   expect: {
     timeout: 60 * 1000,

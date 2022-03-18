@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { MSTeamsDesktop } from "./msteams-desktop";
+import { MSTeamsDesktop } from "@msteams-playwright/core";
 
 test.describe('msteams-desktop', async () => {
     

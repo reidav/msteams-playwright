@@ -20,11 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Cleanup config before run
-      run: |
-          rm -rf /home/runner/.config/Microsoft*
-      if: always()
-
     - uses: actions/checkout@v2
     
     - uses: actions/setup-node@v2
@@ -35,9 +30,13 @@ jobs:
       run: |
         sudo apt-get install xvfb
 
-    - name: Npm ci
+    - name: Npm ci @msteams-playwright/core
       run: |
-        npm ci
+        npm --prefix ./core ci
+
+    - name: Npm ci @msteams-playwright/tests
+      run: |
+        npm --prefix ./tests ci
 
     - name: Install Microsoft Teams
       run: |
@@ -45,10 +44,10 @@ jobs:
           sudo apt install /usr/share/teams.deb
 
     - name: Install Playwright
-      run: npx playwright install --with-deps
+      run:  (cd tests && npx playwright install --with-deps && cd -)
 
     - name: Run Playwright tests
-      run: xvfb-run --auto-servernum -- npx playwright test
+      run: (cd tests && xvfb-run --auto-servernum -- npx playwright test && cd -)
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

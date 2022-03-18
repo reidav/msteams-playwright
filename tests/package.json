@@ -1,7 +1,8 @@
 {
-  "name": "msteams-playwright",
+  "name": "@msteams-playwright/tests",
   "version": "0.0.1",
   "description": "",
+  "main": "index.ts",
   "scripts": {
     "test": "npx playwright test"
   },
@@ -9,10 +10,10 @@
   "author": "David Rei",
   "license": "ISC",
   "devDependencies": {
+    "@msteams-playwright/core":"file:../core",
     "@playwright/test": "^1.20.0",
     "@types/node": "^17.0.21",
     "dotenv": "^16.0.0",
-    "playwright": "^1.20.0",
     "typescript": "^4.6.2"
   }
 }
