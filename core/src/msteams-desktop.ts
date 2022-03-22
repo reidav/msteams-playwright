@@ -1,13 +1,17 @@
 const { _electron: electron, Page } = require('playwright')
-import { TimeHelper } from "./utils";
+import { M365Credential } from './shared';
 const os = require('os');
 const fs = require("fs");
 const path = require('path');
 
 export class MSTeamsDesktop {
     electronApp: any;
+    cred : M365Credential;
 
-    constructor() { }
+    constructor(cred : M365Credential) 
+    { 
+        this.cred = cred; 
+    }
 
     public async launch() {
 
@@ -24,21 +28,21 @@ export class MSTeamsDesktop {
         let get_started_window = await this.waitForPageWithFrame("file:///usr/share/teams/resources/app.asar/lib/renderer/preLogin/accountSelect.html")
         await get_started_window.locator('[aria-label="Select\\ an\\ account\\ to\\ sign\\ in\\ to\\ Teams"]').click();
         await get_started_window.locator('[placeholder="Sign-in\\ address"]').click();
-        await get_started_window.locator('[placeholder="Sign-in\\ address"]').fill(process.env.M365_UPN);
+        await get_started_window.locator('[placeholder="Sign-in\\ address"]').fill(this.cred.upn);
         await get_started_window.locator('text=Next').click();
 
         // Fill the login_window
         let login_window  = await this.waitForPageWithFrame("https://login.microsoftonline.com/common")
         await login_window.locator('[placeholder="Email\\,\\ phone\\,\\ or\\ Skype"]').click();
-        await login_window.locator('[placeholder="Email\\,\\ phone\\,\\ or\\ Skype"]').fill(process.env.M365_UPN);
+        await login_window.locator('[placeholder="Email\\,\\ phone\\,\\ or\\ Skype"]').fill(this.cred.upn);
         await login_window.locator('text=Next').click()
         await login_window.locator('[placeholder="Password"]').click();
-        await login_window.locator('[placeholder="Password"]').fill(process.env.M365_PWD);
+        await login_window.locator('[placeholder="Password"]').fill(this.cred.pwd);
         await login_window.locator('input:has-text("Sign in")').click();
         await login_window.locator('text=No').click();
     }
 
-    async close(){
+    public async close(){
         await this.electronApp.close();
     }
 

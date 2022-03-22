@@ -1,7 +1,5 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
-require('dotenv').config();
-
 const config: PlaywrightTestConfig = {
   testDir: '.',
   timeout: 60 * 1000,
