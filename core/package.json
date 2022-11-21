@@ -10,11 +10,11 @@
     "build": "rimraf ./build && tsc"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
+    "@types/node": "^18.11.9",
     "rimraf": "^3.0.2",
-    "typescript": "^4.6.2"
+    "typescript": "^4.9.3"
   },
   "dependencies": {
-    "playwright": "^1.20.0"
+    "playwright": "^1.28.0"
   }
 }

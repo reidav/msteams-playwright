@@ -1,3 +1,4 @@
 **/playwright-report/
 **/.env
 **/node_modules/
+**/build
