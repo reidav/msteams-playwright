@@ -15,6 +15,6 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
-    "playwright": "^1.28.0"
+    "playwright": "^1.55.1"
   }
 }
